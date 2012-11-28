@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Acceuil</title>
+
+	<link type="text/css" rel="stylesheet" href="./Style/default.css" />
+	
+</h:head>
+<body>
+    <dir id="banniere"><p:graphicImage value="./Style/img/logo.png" /></dir>
+   
+              <p:breadCrumb>
+			<p:menuitem value="Acceuil" url="#" />
+			<p:menuitem value="Géstion de stocke" url="#" />
+			<p:menuitem value="Déconnexion" url="#" />
+ 		      </p:breadCrumb>  
+          
+  
+    <table>
+       <tr>
+           <td>
+          
+            <div id="menu_verticGauche">
+             <p:spacer height="50"/>
+            		<p:accordionPanel multiple="true">  
+    <p:tab title="Catégorie">  
+        <h:panelGrid  cellpadding="10">
+             <p:commandLink value="Informatique"/>
+             <p:commandLink value="Image et song"/>
+             <p:commandLink value="Eléctroménager"/>
+             <p:commandLink value="Prêt à porter"/>
+           
+        </h:panelGrid>  
+    </p:tab>  
+    <p:tab title="Panier">  
+        <h:panelGrid columns="2" cellpadding="10">  
+              <p:commandLink value="Géstion panier"/>
+        </h:panelGrid>  
+    </p:tab>  
+   
+</p:accordionPanel>  
+            
+            </div>
+           </td>
+           <td>
+           <div id="corpad">
+           <br />
+           <h:form id="form">  
+					    <p:tabView id="tabView" dynamic="true" cache="true">  
+					  
+					        <p:tab id="tba1" title="Consulter Catégorie">  
+					            <h:panelGrid columns="2" cellpadding="10">  
+					              
+					            </h:panelGrid>  
+					        </p:tab>  
+					  
+					        <p:tab id="tab2" title="Ajouter Catégorie">  
+					            <h:panelGrid columns="2" cellpadding="10">  
+					                 <table>
+					                 <tr>
+					                    <td> Nom catégorie:</td>
+					                   <td><h:inputText value="#{categorie.libelle}"/></td>
+					                   <td><h:commandButton value="Ajouter"/></td>
+					                   
+					                    
+					                 
+					                 </tr>
+					               </table>   
+					            </h:panelGrid>  
+					        </p:tab>  
+					  
+					        <p:tab id="tab3" title="Supprimer Catégorie">  
+					             <h:panelGrid columns="2" cellpadding="10"> 
+					             <p:outputLabel value="Choisir catégorie :"/> <p:inputText  value=""/>
+					             <p:commandButton value="Supprimer" /></p:commandButton>
+					            </h:panelGrid>  
+					        </p:tab>  
+					  
+					    </p:tabView>  
+                  </h:form>  
+           
+           </div>
+           </td>
+          
+		</tr>
+     </table>
+   
+
+		
+	</body>
+</html>

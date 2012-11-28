@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Acceuil</title>
+
+	<link type="text/css" rel="stylesheet" href="./Style/default.css" />
+	
+</h:head>
+<body>
+    <dir id="banniere"><p:graphicImage value="./Style/img/logo.png" /></dir>
+    <div id="menu_horiz">
+     <table>
+	 <tr align="center">
+	  <td><p:spacer width="30"/><p:commandLink value="Acceuil" /><p:spacer width="100" height="10" /></td>
+	   <td><p:spacer width="30"/><p:commandLink value="Categorie"/><p:spacer width="100" height="10" /></td>
+	   <td><p:spacer width="30"/><p:commandLink value="Nouveautés"/><p:spacer width="100" height="10" /></td>
+	  <td><p:spacer width="30"/><p:commandLink value="Diaporama"/><p:spacer width="100" height="10" /></td>
+	 </tr>
+ 
+     </table>
+    </div>
+    <table>
+       <tr>
+           <td>
+            <div id="menu_verticGauche">
+            <p:spacer height="50"/>
+            		<p:accordionPanel multiple="true">  
+						    <p:tab title="Catégorie">  
+						        <h:panelGrid  cellpadding="10">
+						             <p:commandLink value="Informatique"/>
+						             <p:commandLink value="Image et song"/>
+						             <p:commandLink value="Eléctroménager"/>
+						             <p:commandLink value="Prêt à porter"/>
+						           
+						        </h:panelGrid>  
+						    </p:tab>  
+						    <p:tab title="Panier">  
+						        <h:panelGrid columns="2" cellpadding="10">  
+						              <p:commandLink value="Géstion panier"/>
+						        </h:panelGrid>  
+						    </p:tab>  
+						   
+                   </p:accordionPanel>  
+            </div>
+           </td>
+           <td>
+           <div id="corp">
+           
+           
+			           <h:form id="carForm">  
+			  
+			    <p:fieldset legend="liste des produits">  
+			  
+			        <p:dataGrid id="produitValable" var="produit"  
+			                    value="#{tableBean.p1}" columns="2">  
+			  
+			            <p:column>  
+			  
+			                <p:panel id="pnl" header="#{produit.marque}" style="text-align:center">  
+			                    
+			                </p:panel>  
+			  
+			                <p:draggable for="pnl" revert="true"  
+			                        handle=".ui-panel-titlebar" stack=".ui-panel"/>  
+			  
+			            </p:column>  
+			  
+			        </p:dataGrid>  
+			  
+			    </p:fieldset>  
+			  
+			    <p:fieldset id="selectedProduits" legend="Panier" style="margin-top:20px">  
+			  
+			        <p:outputPanel id="dropArea">  
+			  
+			            <h:outputText value="!!!Ajouter au panier!!!"  
+			                   
+			                    style="font-size:24px;" />  
+			  
+			            <p:dataTable var="car" value="#{tableBean.Pdrope}" >  
+			  
+			                <p:column headerText="Model">  
+			                    <h:outputText value="#{produit.nom}" />  
+			                </p:column>  
+			  
+			                <p:column headerText="Year">  
+			                    <h:outputText value="#{produit.marque}" />  
+			                </p:column>  
+			  
+			                 
+			  
+			                 <p:column style="width:32px">  
+			                    <p:commandButton update=":carForm:display"  
+			                        oncomplete="carDialog.show()"  
+			                        icon="ui-icon-search">  
+			                        <f:setPropertyActionListener value="#{produit}"  
+			                                    target="#{tableBean.selectedProduit}" />  
+			                    </p:commandButton>  
+			                </p:column>  
+			            </p:dataTable>  
+			  
+			        </p:outputPanel>  
+			  
+			    </p:fieldset>  
+			  
+			    <p:droppable for="selectedProduits" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="produitValable" onDrop="handleDrop">  
+			        <p:ajax listener="#{tableBean.onCarDrop}" update="dropArea produitValable" />  
+			    </p:droppable>  
+			  
+			    <p:dialog header="Car Detail" widgetVar="carDialog" resizable="false" draggable="false"  
+			              width="200" showEffect="fade" hideEffect="fade" modal="true">  
+			  
+			        <h:panelGrid id="display" columns="2" cellpadding="4">  
+			  
+			             
+			  
+			            <h:outputText value="Marque:" />  
+			            <h:outputText value="#{tableBean.selectedProduit.marque}"/>  
+			  
+			            <h:outputText value="Nom:" />  
+			            <h:outputText value="#{tableBean.selectedProduit.nom}"/>  
+			  
+			           
+			        </h:panelGrid>  
+			    </p:dialog>  
+  
+  
+			</h:form>  
+			           
+			           
+			 </div>
+           </td>
+           <td>
+		           <div id="menu_verticDroite">
+			         <table>
+			            <tr><td><h3>Connectez-vous</h3></td></tr>
+			            <tr>
+			                <td><br/><h:outputLabel value="Login"/></td><td><h:inputText size="10"/></td>
+			            </tr>
+			            <tr><td><h:outputLabel value="Mot de passe:"/></td><td><h:inputText size="10"/></td></tr>
+			            <tr><td colspan="2"><center><p:commandButton value="Sign up!"/></center></td></tr>
+			          </table>
+		             <p:separator/>
+                    <a href="Inscription.xhtml">Insrivez-vous si vous n'êtes pas déja un client</a>
+                    
+				    <p:separator/>
+				    </div>
+		    </td>
+		</tr>
+     </table>
+   
+
+		
+	</body>
+</html>
